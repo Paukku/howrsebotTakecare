@@ -11,6 +11,7 @@ import nopeus
 import kestavyys
 import competition
 import vuoret
+import metsat
 
 def log_in():
     driver = webdriver.Chrome('C:\\Users\\Paula\\Desktop\\howrsebot\\sele\\chromedriver')
@@ -40,7 +41,7 @@ def log_in():
     # anni(driver)
     # sleep()
 
-
+    #
     # driver.find_element_by_xpath(
     #   "html/body/div[@id='container']/main[@id='content']/section/section/div/div[@id='main-content']/div/article[2]/div/table/tbody/tr[1]/td[2]/button").click()
     # sleep()
@@ -97,7 +98,7 @@ def pizkunen(driver):
     sleep()
     driver.get("http://www.howrse.fi/elevage/chevaux/")
     sleep()
-    driver.get('https://www.howrse.fi/elevage/chevaux/cheval?id=10749548') # 13303062
+    driver.get('https://www.howrse.fi/elevage/chevaux/cheval?id=13303062') # 13303062
     hoida_eiautomaatti(driver, 810) #260
 
     # uloskirjautuminen
@@ -111,16 +112,16 @@ def pizkunen(driver):
 
 
 def esma(driver):
-    # sleep()
-    # driver.get("http://www.howrse.fi/elevage/chevaux/")
-    # sleep()
-    # driver.get('https://www.howrse.fi/elevage/chevaux/cheval?id=12814712')  #13054366
-    # esma_knabet(driver, 200)
+    sleep()
+    driver.get("http://www.howrse.fi/elevage/chevaux/")
+    sleep()
+    driver.get('https://www.howrse.fi/elevage/chevaux/cheval?id=10697317')  #10697317
+    esma_knabet(driver, 200)
 
     sleep()
     driver.get("http://www.howrse.fi/elevage/chevaux/")
     sleep()
-    driver.get('https://www.howrse.fi/elevage/chevaux/cheval?id=14204078') #12747880
+    driver.get('https://www.howrse.fi/elevage/chevaux/cheval?id=12747880') #12747880
     hoida_eiautomaatti(driver, 700) #940
 
     # uloskirjautuminen
@@ -264,24 +265,33 @@ def esma_knabet(driver, hoida):
         hoito.click()
         sleep()
 
-        kestavyys.viisi(driver)
+        metsat.puolitoista(driver)
+        sleep()
+        try:
+            howrsefeed.findfeedblup(driver, 15)
+            sleep()
+
+        except:
+            pass
+            sleep()
+
+        sleep()
+        metsat.viisijapuoli(driver)
+        sleep()
+        anna_herkut(driver)
+        sleep()
+        metsat.puolitoista(driver)
         sleep()
 
-        # anna_herkut(driver)
-        # sleep()
+        anna_herkut(driver)
+        sleep()
 
         hoito = driver.find_element_by_id("boutonNourrir")
         hoito.click()
         sleep()
 
 
-        try:
-            howrsefeed.findfeedblup(driver)
-            sleep()
 
-        except:
-            pass
-            sleep()
 
         # laukka.viisi(driver)
         # sleep()
@@ -300,8 +310,8 @@ def hoida_eiautomaatti(driver, hoida):
     laske = random_heppa()
     while(hoidettu < hoida):
         sleep()
-        # keskus_anni(driver)
-        keskus_normaali(driver)
+        keskus_anni(driver)
+        # keskus_normaali(driver)
         sleep()
         tehtava(driver)
         tehtava_sleep()
